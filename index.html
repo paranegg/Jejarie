@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>제자리에 | 집수리·설비·인테리어</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none' stroke='%238a6a4a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 8 C45 8 49 12 49 17 C49 19 48.4 20.8 47.4 22.2 L52 26.8 L45.8 33 L41.2 28.4 C39.8 29.4 38 30 36 30 C31 30 27 26 27 21 C27 16 31 12 36 12'/%3E%3Cpath d='M14 56 L36 34' stroke-width='3.6'/%3E%3Ccircle cx='12' cy='58' r='4.5' fill='%238a6a4a' stroke='none'/%3E%3C/svg%3E">
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,7 +16,9 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-s
 
 /* ===== NAV ===== */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;background:rgba(244,242,237,.88);backdrop-filter:blur(14px)}
-.logo{font-size:22px;font-weight:800;letter-spacing:-.08em}
+.logo{font-size:22px;font-weight:800;letter-spacing:-.08em;display:flex;align-items:center;gap:9px}
+.logo svg{width:24px;height:24px;flex-shrink:0}
+.brand-icon{width:34px;height:34px;margin-bottom:16px}
 nav a{color:#171715;text-decoration:none;margin-left:25px;font-size:13px}
 
 /* ===== HERO ===== */
@@ -88,7 +91,14 @@ footer .logo{color:#fff}
 <body>
 
 <nav>
-  <div class="logo">제자리에</div>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" fill="none" stroke="#171715" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 10 H46 V54 H18 Z"/>
+      <path d="M14 54 H50" stroke-width="3.4"/>
+      <circle cx="39" cy="32" r="1.8" fill="#8a6a4a" stroke="none"/>
+    </svg>
+    제자리에
+  </div>
   <div>
     <a href="#about">01. 소개</a>
     <a href="#gallery">02. 시공갤러리</a>
@@ -111,6 +121,11 @@ footer .logo{color:#fff}
   <div class="grid">
     <div class="label">01 / BRAND</div>
     <div>
+      <svg class="brand-icon" viewBox="0 0 64 64" fill="none" stroke="#8a6a4a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M40 8 C45 8 49 12 49 17 C49 19 48.4 20.8 47.4 22.2 L52 26.8 L45.8 33 L41.2 28.4 C39.8 29.4 38 30 36 30 C31 30 27 26 27 21 C27 16 31 12 36 12"/>
+        <path d="M14 56 L36 34" stroke-width="3"/>
+        <circle cx="12" cy="58" r="4"/>
+      </svg>
       <div class="brand-copy">집이 편해지는 건,<br>작은 것부터입니다.</div>
       <div class="desc">
         삐걱이던 문, 새던 수전, 어긋난 문지방. 사소해 보여도 매일 마주치는
@@ -242,7 +257,14 @@ footer .logo{color:#fff}
 </main>
 
 <footer>
-  <div class="logo">제자리에</div>
+  <div class="logo">
+    <svg viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 10 H46 V54 H18 Z"/>
+      <path d="M14 54 H50" stroke-width="3.4"/>
+      <circle cx="39" cy="32" r="1.8" fill="#c9a986" stroke="none"/>
+    </svg>
+    제자리에
+  </div>
   <div>집수리 · 설비 · 인테리어<br>© 2026 JEJARIE</div>
 </footer>
 
