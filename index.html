@@ -19,11 +19,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 nav a{color:#171715;text-decoration:none;margin-left:25px;font-size:13px}
 
 /* ===== HERO ===== */
-.hero{min-height:92vh;padding:150px 8vw 70px;display:flex;flex-direction:column;justify-content:center}
-.eyebrow{font-size:12px;letter-spacing:.16em;margin-bottom:30px;color:#666;text-transform:uppercase}
-h1{font-size:clamp(48px,9vw,120px);line-height:.95;letter-spacing:-.09em;margin:0;font-weight:800}
-.lead{font-size:clamp(21px,3vw,38px);line-height:1.3;letter-spacing:-.06em;max-width:680px;margin:44px 0 30px}
-.sub{font-size:15px;line-height:1.8;color:#666;max-width:520px;margin-bottom:34px}
+.hero{min-height:100vh;padding:150px 8vw 70px;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:12px;letter-spacing:.16em;margin-bottom:32px;color:#666;text-transform:uppercase}
+h1{font-size:clamp(52px,10.5vw,148px);line-height:.94;letter-spacing:-.1em;margin:0;font-weight:800}
+h1 .accent{color:#8a6a4a}
+.lead{font-size:clamp(22px,3.2vw,40px);line-height:1.3;letter-spacing:-.06em;max-width:700px;margin:50px 0 30px}
+.sub{font-size:15px;line-height:1.8;color:#666;max-width:520px;margin-bottom:38px}
 .button{display:inline-block;background:#171715;color:#fff;text-decoration:none;padding:17px 25px;border-radius:999px;font-size:14px}
 
 /* ===== SECTION SHELL ===== */
@@ -67,15 +68,15 @@ footer{padding:65px 8vw;background:#171715;color:#fff;display:flex;justify-conte
 footer .logo{color:#fff}
 
 /* ===== FLOATING CONTACT BAR ===== */
-.floating-bar{position:fixed;bottom:0;left:0;right:0;background:#171715;padding:14px 20px;display:flex;gap:12px;z-index:1000;box-shadow:0 -4px 12px rgba(0,0,0,.15)}
-.btn-call,.btn-kakao{flex:1;padding:14px 0;border-radius:8px;text-align:center;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-call{background:#fff;color:#171715}
-.btn-kakao{background:#fee500;color:#171715}
+.floating-bar{position:fixed;bottom:0;left:0;right:0;background:#f4f2ed;border-top:1px solid #d5d1c9;padding:14px 20px;display:flex;gap:10px;z-index:1000;box-shadow:0 -4px 16px rgba(0,0,0,.06)}
+.btn-call,.btn-kakao{flex:1;padding:14px 0;border-radius:999px;text-align:center;text-decoration:none;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:-.02em}
+.btn-call{background:#171715;color:#fff}
+.btn-kakao{background:transparent;color:#171715;border:1px solid #171715}
 
 @media(max-width:700px){
   nav{padding:18px 5vw}
   nav div:last-child{display:none}
-  .hero{padding:125px 7vw 60px;min-height:80vh}
+  .hero{padding:125px 7vw 60px;min-height:88vh}
   .grid{grid-template-columns:1fr;gap:26px}
   section{padding:78px 7vw}
   .cards,.service-cards{grid-template-columns:1fr}
@@ -100,7 +101,7 @@ footer .logo{color:#fff}
 
 <section class="hero" style="border-top:none;padding-top:150px">
   <div class="eyebrow">Home Repair &amp; Maintenance</div>
-  <h1>어긋난 우리 집의<br>일상을, 제자리에.</h1>
+  <h1>어긋난 우리 집의<br>일상을, <span class="accent">제자리에.</span></h1>
   <div class="lead">작은 집수리부터 설비·인테리어까지.</div>
   <div class="sub">삐걱거리는 문, 고장 난 수도, 작은 불편함까지<br>정직하고 꼼꼼하게 제자리로 돌려놓습니다.</div>
   <a class="button" href="tel:010-0000-0000">전화 견적 문의 →</a>
@@ -110,11 +111,11 @@ footer .logo{color:#fff}
   <div class="grid">
     <div class="label">01 / BRAND</div>
     <div>
-      <div class="brand-copy">작은 정성이<br>집을 바꿉니다.</div>
+      <div class="brand-copy">집이 편해지는 건,<br>작은 것부터입니다.</div>
       <div class="desc">
-        '제자리에'는 단순한 설비 수리를 넘어, 거주 공간의 어긋난 불편함을 바르게 바로잡는
-        종합 집수리 브랜드입니다. 문지방 교체, 수전 교체 등 작은 일 하나도
-        마감까지 깔끔하게 완성합니다.
+        삐걱이던 문, 새던 수전, 어긋난 문지방. 사소해 보여도 매일 마주치는
+        불편함이잖아요. '제자리에'는 그 작은 불편을 제대로, 끝까지
+        고쳐드리는 것부터 시작합니다.
       </div>
     </div>
   </div>
@@ -124,12 +125,12 @@ footer .logo{color:#fff}
   <div class="grid">
     <div class="label">02 / WORK GALLERY</div>
     <div>
-      <div class="copy">말보다 결과로<br>보여드립니다.</div>
+      <div class="copy">저희가 고친 자리,<br>직접 보여드릴게요.</div>
 
       <div class="cards">
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-hammer"></i><b>상업,주거공간 공사</b></div>
+          <div class="card-head"><i class="fa-solid fa-hammer"></i><b>상업공간, 주거공간 목공사</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/I1.jpg" alt="목공사 사진 1"></div>
@@ -143,7 +144,7 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-droplet-slash"></i><b>누수 복원</b></div>
+          <div class="card-head"><i class="fa-solid fa-droplet-slash"></i><b>누수 복원 사례</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/L1.jpg" alt="누수 복원 사진 1"></div>
@@ -157,7 +158,7 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-door-open"></i><b>문지방 시공</b></div>
+          <div class="card-head"><i class="fa-solid fa-door-open"></i><b>문지방 시공 사례</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/M1.jpg" alt="문지방 시공 사진 1"></div>
@@ -174,7 +175,7 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-screwdriver-wrench"></i><b>기타 수리</b></div>
+          <div class="card-head"><i class="fa-solid fa-screwdriver-wrench"></i><b>기타 수리 사례</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/R1.jpg" alt="기타 수리 사진 1"></div>
