@@ -43,8 +43,9 @@ section{padding:110px 8vw;border-top:1px solid #d5d1c9}
 /* ===== 02 GALLERY (cards + swiper) ===== */
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:55px}
 .card{background:#dedbd4;overflow:hidden;display:flex;flex-direction:column}
-.card-head{padding:22px 24px;display:flex;align-items:center;gap:10px}
-.card-head i{font-size:16px}
+.card-head{padding:22px 24px;display:flex;align-items:center;gap:12px}
+.card-head img{width:22px;height:22px;object-fit:contain;flex-shrink:0}
+.card-head svg{width:22px;height:22px;flex-shrink:0}
 .card-head b{font-size:19px;letter-spacing:-.03em;font-weight:700}
 .card-swiper{width:100%;height:300px;background:#c9c6bd}
 .card-swiper .swiper-slide{width:100%;height:100%}
@@ -56,7 +57,8 @@ section{padding:110px 8vw;border-top:1px solid #d5d1c9}
 /* ===== 03 SERVICES ===== */
 .service-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:55px}
 .service-card{min-height:200px;background:#dedbd4;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
-.service-card i{font-size:22px;margin-bottom:14px}
+.service-card img{width:30px;height:30px;object-fit:contain;margin-bottom:14px}
+.service-card svg{width:30px;height:30px;margin-bottom:14px}
 .service-card b{font-size:22px;letter-spacing:-.04em}
 .service-card p{font-size:14px;line-height:1.75;color:#555;margin-top:10px}
 
@@ -145,7 +147,7 @@ footer .logo{color:#fff}
       <div class="cards">
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-hammer"></i><b>상업공간, 주거공간 목공사</b></div>
+          <div class="card-head"><img src="icons/icon_woodwork.png" alt=""><b>상업공간, 주거공간 목공사</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/I1.jpg" alt="목공사 사진 1"></div>
@@ -159,7 +161,7 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-droplet-slash"></i><b>누수 복원 사례</b></div>
+          <div class="card-head"><img src="icons/icon_leak.png" alt=""><b>누수 복원 사례</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/L1.jpg" alt="누수 복원 사진 1"></div>
@@ -173,7 +175,14 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-door-open"></i><b>문지방 시공 사례</b></div>
+          <div class="card-head">
+            <svg viewBox="0 0 64 64" fill="none" stroke="#8a6a4a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10 H46 V54 H18 Z"/>
+              <path d="M14 54 H50" stroke-width="4"/>
+              <circle cx="39" cy="32" r="2.2" fill="#8a6a4a" stroke="none"/>
+            </svg>
+            <b>문지방 시공 사례</b>
+          </div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/M1.jpg" alt="문지방 시공 사진 1"></div>
@@ -190,7 +199,7 @@ footer .logo{color:#fff}
         </div>
 
         <div class="card">
-          <div class="card-head"><i class="fa-solid fa-screwdriver-wrench"></i><b>기타 수리 사례</b></div>
+          <div class="card-head"><img src="icons/icon_general.png" alt=""><b>기타 수리 사례</b></div>
           <div class="swiper card-swiper">
             <div class="swiper-wrapper">
               <div class="swiper-slide"><img src="images/R1.jpg" alt="기타 수리 사진 1"></div>
@@ -217,19 +226,25 @@ footer .logo{color:#fff}
 
       <div class="service-cards">
         <div class="service-card">
-          <div><i class="fa-solid fa-hammer"></i><br><b>상업공간, 주거공간 목공사</b></div>
+          <div><img src="icons/icon_woodwork.png" alt=""><br><b>상업공간, 주거공간 목공사</b></div>
           <p>맞춤 목공 시공, 가벽 설치, 가구 및 몰딩 정밀 목공 작업</p>
         </div>
         <div class="service-card">
-          <div><i class="fa-solid fa-droplet-slash"></i><br><b>누수 복원 공사</b></div>
+          <div><img src="icons/icon_leak.png" alt=""><br><b>누수 복원 공사</b></div>
           <p>누수 탐지 및 원인 해결, 누수 후 천장/벽면 마감 복원 전문</p>
         </div>
         <div class="service-card">
-          <div><i class="fa-solid fa-door-open"></i><br><b>문 , 문지방 수리</b></div>
+          <div>
+            <svg viewBox="0 0 64 64" fill="none" stroke="#8a6a4a" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 10 H46 V54 H18 Z"/>
+              <path d="M14 54 H50" stroke-width="4"/>
+              <circle cx="39" cy="32" r="2.2" fill="#8a6a4a" stroke="none"/>
+            </svg>
+            <br><b>문 , 문지방 수리</b></div>
           <p>손상된 문지방 교체, 닫히지 않는 문 수리, 중문 레일 보수</p>
         </div>
         <div class="service-card">
-          <div><i class="fa-solid fa-screwdriver-wrench"></i><br><b>기타 생활 집수리</b></div>
+          <div><img src="icons/icon_general.png" alt=""><br><b>기타 생활 집수리</b></div>
           <p>수전/조명 교체, 바이오 실리콘 코킹, 선반 및 각종 부속 교체</p>
         </div>
       </div>
