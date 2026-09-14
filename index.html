@@ -55,6 +55,15 @@ section{padding:110px 8vw;border-top:1px solid #d5d1c9}
 .swiper-button-next,.swiper-button-prev{color:#fff!important;filter:drop-shadow(0 2px 4px rgba(0,0,0,.5));transform:scale(.62)}
 .swiper-pagination-bullet{background:#fff!important;opacity:.6}
 .swiper-pagination-bullet-active{opacity:1;background:#171715!important}
+.case-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:55px 0 14px}
+.case-card{background:#dedbd4;overflow:hidden;display:flex;flex-direction:column}
+.case-card .card-swiper{height:340px}
+.case-body{padding:24px}
+.case-meta{display:flex;gap:8px;align-items:center;margin-bottom:12px;font-size:12px;color:#6b6259}
+.case-category{padding:5px 9px;border:1px solid #aaa197;border-radius:999px;color:#594b3e}
+.case-card h3{font-size:23px;line-height:1.35;letter-spacing:-.04em;margin:0}
+.case-card p{font-size:14px;line-height:1.75;color:#555;margin:13px 0 0;white-space:pre-line}
+.case-empty{grid-column:1/-1;padding:34px;border:1px solid #cbc6bc;color:#777;font-size:14px;text-align:center}
 
 /* ===== 03 SERVICES ===== */
 .service-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:55px}
@@ -87,6 +96,8 @@ footer .logo{color:#fff}
   .grid{grid-template-columns:1fr;gap:26px}
   section{padding:78px 7vw}
   .cards,.service-cards{grid-template-columns:1fr}
+  .case-list{grid-template-columns:1fr;margin-top:38px}
+  .case-card .card-swiper{height:280px}
   .card-swiper{height:240px}
   footer{flex-direction:column}
 }
@@ -145,6 +156,8 @@ footer .logo{color:#fff}
     <div class="label">02 / WORK GALLERY</div>
     <div>
       <div class="copy">저희가 고친 자리,<br>직접 보여드릴게요.</div>
+
+      <div id="caseList" class="case-list" aria-live="polite"></div>
 
       <div class="cards">
 
@@ -279,7 +292,6 @@ footer .logo{color:#fff}
         <textarea name="문의내용" placeholder="어떤 문제가 있는지 알려주세요."></textarea>
         <button class="button" type="submit">상담 요청하기 →</button>
       </form>
-      </form>
     </div>
   </div>
 </section>
@@ -305,7 +317,7 @@ footer .logo{color:#fff}
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-document.querySelectorAll('.card-swiper').forEach(function(el){
+function initSwiper(el){
   new Swiper(el, {
     slidesPerView: 1,
     spaceBetween: 0,
@@ -313,7 +325,44 @@ document.querySelectorAll('.card-swiper').forEach(function(el){
     pagination: { el: el.querySelector('.swiper-pagination'), clickable: true },
     navigation: { nextEl: el.querySelector('.swiper-button-next'), prevEl: el.querySelector('.swiper-button-prev') },
   });
-});
+}
+
+function escapeHtml(value) {
+  return String(value || '').replace(/[&<>'"]/g, function(char) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char];
+  });
+}
+
+async function loadCases() {
+  const list = document.getElementById('caseList');
+  try {
+    const response = await fetch('/cases.json', { cache: 'no-cache' });
+    if (!response.ok) throw new Error('시공사례를 불러오지 못했습니다.');
+    const cases = await response.json();
+    if (!Array.isArray(cases) || !cases.length) {
+      list.remove();
+      return;
+    }
+
+    list.innerHTML = cases.map(function(item) {
+      const images = Array.isArray(item.images) ? item.images : [];
+      const slides = images.map(function(src, index) {
+        return '<div class="swiper-slide"><img src="' + escapeHtml(src) + '" alt="' + escapeHtml(item.title) + ' 사진 ' + (index + 1) + '" loading="lazy"></div>';
+      }).join('');
+      return '<article class="case-card">' +
+        '<div class="swiper card-swiper"><div class="swiper-wrapper">' + slides + '</div>' +
+        (images.length > 1 ? '<div class="swiper-pagination"></div><div class="swiper-button-next"></div><div class="swiper-button-prev"></div>' : '') +
+        '</div><div class="case-body"><div class="case-meta"><span class="case-category">' + escapeHtml(item.category) + '</span><span>' + escapeHtml(item.region) + '</span></div>' +
+        '<h3>' + escapeHtml(item.title) + '</h3><p>' + escapeHtml(item.description) + '</p></div></article>';
+    }).join('');
+    list.querySelectorAll('.card-swiper').forEach(initSwiper);
+  } catch (error) {
+    list.innerHTML = '<div class="case-empty">시공사례를 불러오는 중 문제가 생겼습니다.</div>';
+  }
+}
+
+document.querySelectorAll('.card-swiper').forEach(initSwiper);
+loadCases();
 </script>
 <script>
   const contactForm = document.getElementById('contactForm');

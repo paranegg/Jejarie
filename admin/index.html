@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>제자리에 관리자</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;background:#f4f2ed;color:#171715;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",sans-serif}
+    header{display:flex;justify-content:space-between;align-items:center;padding:22px 5vw;border-bottom:1px solid #d5d1c9}
+    .logo{font-size:21px;font-weight:800;letter-spacing:-.06em}
+    .logout{border:0;background:none;color:#777;cursor:pointer;font:inherit}
+    main{width:min(720px,90vw);margin:70px auto 100px}
+    .eyebrow{font-size:12px;letter-spacing:.16em;color:#777;margin-bottom:20px}
+    h1{font-size:clamp(34px,6vw,58px);line-height:1.08;letter-spacing:-.07em;margin:0 0 42px}
+    .panel{background:#dedbd4;padding:clamp(24px,5vw,44px)}
+    label{display:block;font-size:13px;font-weight:700;margin:22px 0 8px}
+    input,select,textarea{width:100%;border:0;border-bottom:1px solid #aaa;background:transparent;border-radius:0;padding:13px 3px;font:inherit;outline:none}
+    textarea{min-height:130px;resize:vertical;line-height:1.6}
+    input:focus,select:focus,textarea:focus{border-color:#171715}
+    .drop{display:block;border:1px dashed #9f978e;padding:30px 18px;text-align:center;cursor:pointer;color:#625b54;background:rgba(255,255,255,.18)}
+    .drop input{display:none}
+    .hint{font-size:12px;color:#777;margin:8px 0 0;line-height:1.5}
+    .previews{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:12px}
+    .preview{position:relative;aspect-ratio:1;background:#c9c6bd;overflow:hidden}
+    .preview img{width:100%;height:100%;object-fit:cover}
+    .preview button{position:absolute;top:5px;right:5px;width:27px;height:27px;border:0;border-radius:50%;background:rgba(0,0,0,.7);color:white;cursor:pointer}
+    .button{width:100%;border:0;border-radius:999px;background:#171715;color:#fff;padding:17px 22px;font-size:15px;font-weight:700;cursor:pointer;margin-top:30px}
+    .button:disabled{opacity:.5;cursor:wait}
+    .message{font-size:14px;line-height:1.6;margin-top:18px;min-height:22px}
+    .error{color:#a02d24}
+    .success{color:#27613b}
+    #loginView{max-width:480px;margin-left:auto;margin-right:auto}
+    #editorView,#logoutButton{display:none}
+    .login-note{font-size:13px;color:#686159;line-height:1.7;margin:0 0 24px}
+    @media(max-width:600px){main{margin-top:44px}.previews{grid-template-columns:repeat(3,1fr)}}
+  </style>
+</head>
+<body>
+  <header><div class="logo">제자리에 / 관리자</div><button id="logoutButton" class="logout" type="button">로그아웃</button></header>
+  <main>
+    <section id="loginView">
+      <div class="eyebrow">ADMIN LOGIN</div>
+      <h1>시공사례<br>관리자 로그인</h1>
+      <form id="loginForm" class="panel">
+        <p class="login-note">관리자 비밀번호를 입력해 주세요.</p>
+        <label for="password">비밀번호</label>
+        <input id="password" type="password" autocomplete="current-password" required autofocus>
+        <button class="button" type="submit">로그인</button>
+        <div id="loginMessage" class="message" role="status"></div>
+      </form>
+    </section>
+
+    <section id="editorView">
+      <div class="eyebrow">NEW WORK</div>
+      <h1>새 시공사례<br>추가하기</h1>
+      <form id="caseForm" class="panel">
+        <label for="category">카테고리</label>
+        <select id="category" required>
+          <option value="">선택해 주세요</option>
+          <option>목공사</option>
+          <option>누수 복원</option>
+          <option>인조대리석 문지방</option>
+          <option>기타 집수리</option>
+        </select>
+        <label for="title">제목</label>
+        <input id="title" maxlength="100" placeholder="예: 강서구 욕실 문지방 교체" required>
+        <label for="region">지역</label>
+        <input id="region" maxlength="60" placeholder="예: 서울 강서구" required>
+        <label for="description">설명</label>
+        <textarea id="description" maxlength="2000" placeholder="어떤 문제를 어떻게 시공했는지 적어 주세요." required></textarea>
+        <label>사진</label>
+        <label class="drop" for="photos">+ 사진 여러 장 선택</label>
+        <input id="photos" type="file" accept="image/*" multiple hidden>
+        <p class="hint">최대 12장. 휴대폰 사진은 게시할 때 웹용으로 자동 최적화됩니다.</p>
+        <div id="previews" class="previews"></div>
+        <button id="publishButton" class="button" type="submit">게시하기</button>
+        <div id="publishMessage" class="message" role="status"></div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    const loginView = document.getElementById('loginView');
+    const editorView = document.getElementById('editorView');
+    const logoutButton = document.getElementById('logoutButton');
+    const photosInput = document.getElementById('photos');
+    const previews = document.getElementById('previews');
+    let selectedFiles = [];
+
+    async function request(url, options) {
+      const response = await fetch(url, options);
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(data.error || '요청을 처리하지 못했습니다.');
+      return data;
+    }
+
+    function showEditor(authenticated) {
+      loginView.style.display = authenticated ? 'none' : 'block';
+      editorView.style.display = authenticated ? 'block' : 'none';
+      logoutButton.style.display = authenticated ? 'block' : 'none';
+    }
+
+    request('/api/login').then(data => showEditor(data.authenticated)).catch(() => showEditor(false));
+
+    document.getElementById('loginForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const message = document.getElementById('loginMessage');
+      message.className = 'message';
+      message.textContent = '확인 중입니다…';
+      try {
+        await request('/api/login', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({password: document.getElementById('password').value})
+        });
+        event.target.reset();
+        showEditor(true);
+      } catch (error) {
+        message.className = 'message error';
+        message.textContent = error.message;
+      }
+    });
+
+    logoutButton.addEventListener('click', async () => {
+      await request('/api/logout', {method:'POST'}).catch(() => {});
+      showEditor(false);
+    });
+
+    photosInput.addEventListener('change', () => {
+      const incoming = Array.from(photosInput.files || []);
+      selectedFiles = selectedFiles.concat(incoming).slice(0, 12);
+      photosInput.value = '';
+      renderPreviews();
+    });
+
+    function renderPreviews() {
+      previews.innerHTML = '';
+      selectedFiles.forEach((file, index) => {
+        const box = document.createElement('div');
+        box.className = 'preview';
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.onload = () => URL.revokeObjectURL(img.src);
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.setAttribute('aria-label', '사진 삭제');
+        remove.textContent = '×';
+        remove.onclick = () => { selectedFiles.splice(index, 1); renderPreviews(); };
+        box.append(img, remove);
+        previews.appendChild(box);
+      });
+    }
+
+    async function optimizeImage(file) {
+      const bitmap = await createImageBitmap(file);
+      const maxSide = 1600;
+      const scale = Math.min(1, maxSide / Math.max(bitmap.width, bitmap.height));
+      const canvas = document.createElement('canvas');
+      canvas.width = Math.round(bitmap.width * scale);
+      canvas.height = Math.round(bitmap.height * scale);
+      canvas.getContext('2d').drawImage(bitmap, 0, 0, canvas.width, canvas.height);
+      bitmap.close();
+      let quality = .84;
+      let blob;
+      do {
+        blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+        quality -= .1;
+      } while (blob && blob.size > 1000 * 1024 && quality >= .44);
+      if (!blob) throw new Error('사진을 변환하지 못했습니다.');
+      return blob;
+    }
+
+    function toBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    document.getElementById('caseForm').addEventListener('submit', async event => {
+      event.preventDefault();
+      const button = document.getElementById('publishButton');
+      const message = document.getElementById('publishMessage');
+      if (!selectedFiles.length) {
+        message.className = 'message error';
+        message.textContent = '사진을 한 장 이상 선택해 주세요.';
+        return;
+      }
+      button.disabled = true;
+      message.className = 'message';
+      try {
+        const uploaded = [];
+        for (let i = 0; i < selectedFiles.length; i++) {
+          message.textContent = `사진을 준비하고 있습니다… (${i + 1}/${selectedFiles.length})`;
+          const blob = await optimizeImage(selectedFiles[i]);
+          const content = await toBase64(blob);
+          uploaded.push(await request('/api/upload', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({content, mimeType:'image/jpeg'})
+          }));
+        }
+        message.textContent = '홈페이지에 게시하고 있습니다…';
+        await request('/api/publish', {
+          method: 'POST',
+          headers: {'Content-Type':'application/json'},
+          body: JSON.stringify({
+            category: document.getElementById('category').value,
+            title: document.getElementById('title').value,
+            region: document.getElementById('region').value,
+            description: document.getElementById('description').value,
+            images: uploaded
+          })
+        });
+        event.target.reset();
+        selectedFiles = [];
+        renderPreviews();
+        message.className = 'message success';
+        message.textContent = '게시되었습니다. 보통 1~2분 뒤 홈페이지에 표시됩니다.';
+      } catch (error) {
+        message.className = 'message error';
+        message.textContent = error.message;
+        if (/로그인/.test(error.message)) showEditor(false);
+      } finally {
+        button.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
