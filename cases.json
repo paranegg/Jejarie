@@ -1,1 +1,103 @@
-[]
+[
+  {
+    "id": "archive-rooftop-pergola",
+    "siteId": "",
+    "category": "목공",
+    "title": "옥상 파고라 구조 시공",
+    "region": "서울·경기",
+    "workDate": "2026-01-01",
+    "year": "2026",
+    "description": "현장 치수와 구조를 확인하고 기초부터 목구조까지 차근차근 시공했습니다.",
+    "details": "현장의 치수와 바닥 상태를 먼저 확인한 뒤 기초 위치를 잡았습니다. 구조재를 순서대로 세우고 수평과 간격을 점검하며 오래 사용할 수 있도록 기본부터 마감까지 진행했습니다.",
+    "review": "",
+    "reviewVisible": false,
+    "featured": true,
+    "status": "published",
+    "coverImage": "/images/R1.jpg",
+    "images": [
+      "/images/R1.jpg",
+      "/images/R2.jpg",
+      "/images/R3.jpg",
+      "/images/R4.jpg",
+      "/images/R5.jpg"
+    ],
+    "publishedAt": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "archive-leak-restoration",
+    "siteId": "",
+    "category": "누수복원",
+    "title": "누수 피해 천장·벽체 복원",
+    "region": "서울·경기",
+    "workDate": "2025-12-01",
+    "year": "2025",
+    "description": "보양, 철거와 보강, 면 정리와 마감까지 복원한 작업입니다.",
+    "details": "누수로 손상된 범위를 확인하고 주변을 보양한 뒤 손상된 천장과 벽체를 철거했습니다. 내부 상태를 점검하고 필요한 부분을 보강한 다음 면 정리와 마감 작업을 진행했습니다.",
+    "review": "",
+    "reviewVisible": false,
+    "featured": true,
+    "status": "published",
+    "coverImage": "/images/L1.jpg",
+    "images": [
+      "/images/L1.jpg",
+      "/images/L2.jpg",
+      "/images/L3.jpg",
+      "/images/L4.jpg",
+      "/images/L5.jpg",
+      "/images/L6.jpg",
+      "/images/L7.jpg",
+      "/images/L8.jpg",
+      "/images/L9.jpg",
+      "/images/L10.jpg"
+    ],
+    "publishedAt": "2025-12-01T00:00:00.000Z"
+  },
+  {
+    "id": "archive-marble-threshold",
+    "siteId": "",
+    "category": "인조대리석 문지방",
+    "title": "인조대리석 문지방 교체",
+    "region": "서울·경기",
+    "workDate": "2025-11-01",
+    "year": "2025",
+    "description": "손상된 기존 문지방을 철거하고 높이와 폭에 맞춰 깔끔하게 교체했습니다.",
+    "details": "기존 문지방을 안전하게 철거하고 바탕면을 정리했습니다. 현장 폭과 높이에 맞춰 인조대리석을 가공하고 문과 바닥의 사용에 불편함이 없도록 마감했습니다.",
+    "review": "",
+    "reviewVisible": false,
+    "featured": true,
+    "status": "published",
+    "coverImage": "/images/M1.jpg",
+    "images": [
+      "/images/M1.jpg",
+      "/images/M2.jpg",
+      "/images/M3.jpg",
+      "/images/M4.jpg",
+      "/images/M5.jpg",
+      "/images/M6.jpg"
+    ],
+    "publishedAt": "2025-11-01T00:00:00.000Z"
+  },
+  {
+    "id": "archive-interior-finish",
+    "siteId": "",
+    "category": "생활집수리",
+    "title": "실내 천장·벽체 마감 공사",
+    "region": "서울·경기",
+    "workDate": "2025-10-01",
+    "year": "2025",
+    "description": "기존 마감을 정리하고 목구조 보강, 보드 작업과 도장까지 면을 다시 잡았습니다.",
+    "details": "기존 마감을 철거하고 내부 목구조를 확인했습니다. 필요한 곳을 보강한 뒤 보드와 도장 작업으로 천장과 벽체의 면을 정돈했습니다.",
+    "review": "",
+    "reviewVisible": false,
+    "featured": true,
+    "status": "published",
+    "coverImage": "/images/R6.jpg",
+    "images": [
+      "/images/R6.jpg",
+      "/images/R7.jpg",
+      "/images/R8.jpg",
+      "/images/R9.jpg"
+    ],
+    "publishedAt": "2025-10-01T00:00:00.000Z"
+  }
+]

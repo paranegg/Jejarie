@@ -1,0 +1,68 @@
+const crypto = require('crypto');
+const { isAuthenticated } = require('../lib/auth');
+const { repositoryState, commitJson } = require('../lib/content');
+
+const categories = ['인조대리석 문지방', '누수복원', '목공', '생활집수리', '기타'];
+const clean = (value, max = 5000) => String(value || '').trim().slice(0, max);
+
+function normalize(body, previous = {}) {
+  const images = Array.isArray(body.images) ? body.images.slice(0, 20) : [];
+  const imagePaths = images.map(image => typeof image === 'string' ? image : '/' + image.path);
+  const uploads = images.filter(image => image && typeof image === 'object');
+  for (const image of uploads) {
+    if (!/^[a-f0-9]{40}$/.test(image.sha || '') || !/^uploads\/\d{4}-\d{2}-\d{2}\/[a-f0-9-]+\.jpg$/.test(image.path || '')) throw new Error('사진 정보가 올바르지 않습니다.');
+  }
+  const item = {
+    id: previous.id || crypto.randomUUID(),
+    siteId: clean(body.siteId, 100),
+    category: clean(body.category, 40),
+    title: clean(body.title, 100),
+    region: clean(body.region, 60),
+    workDate: clean(body.workDate, 10),
+    year: clean(body.workDate, 10).slice(0, 4) || clean(body.year, 4),
+    description: clean(body.description, 500),
+    details: clean(body.details, 10000),
+    review: clean(body.review, 3000),
+    reviewVisible: Boolean(body.reviewVisible && clean(body.review, 3000)),
+    featured: Boolean(body.featured),
+    status: body.status === 'draft' ? 'draft' : 'published',
+    images: imagePaths,
+    coverImage: imagePaths.includes(body.coverImage) ? body.coverImage : imagePaths[Number(body.coverIndex) || 0] || imagePaths[0] || '',
+    publishedAt: previous.publishedAt || new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+  };
+  if (!categories.includes(item.category) || !item.title || !item.region || !item.description || !item.images.length) throw new Error('필수 입력 내용을 다시 확인해 주세요.');
+  return { item, uploads };
+}
+
+module.exports = async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+  if (!isAuthenticated(req)) return res.status(401).json({ error: '로그인이 필요합니다.' });
+  try {
+    const state = await repositoryState('cases.json', []);
+    const projects = Array.isArray(state.value) ? state.value : [];
+    if (req.method === 'GET') return res.status(200).json({ projects });
+    if (req.method === 'DELETE') {
+      const id = clean((req.body || {}).id, 100);
+      const next = projects.filter(item => item.id !== id);
+      if (next.length === projects.length) return res.status(404).json({ error: '시공사례를 찾지 못했습니다.' });
+      await commitJson({ path: 'cases.json', value: next, message: '시공사례 삭제' });
+      return res.status(200).json({ ok: true });
+    }
+    if (!['POST', 'PUT'].includes(req.method)) return res.status(405).json({ error: '허용되지 않은 요청입니다.' });
+    const body = req.body || {};
+    const index = req.method === 'PUT' ? projects.findIndex(item => item.id === body.id) : -1;
+    if (req.method === 'PUT' && index < 0) return res.status(404).json({ error: '시공사례를 찾지 못했습니다.' });
+    const { item, uploads } = normalize(body, index >= 0 ? projects[index] : {});
+    const next = [...projects];
+    if (index >= 0) next[index] = item; else next.unshift(item);
+    await commitJson({
+      path: 'cases.json', value: next, message: `${index >= 0 ? '시공사례 수정' : '시공사례 추가'}: ${item.title}`,
+      extraTree: uploads.map(image => ({ path: image.path, mode: '100644', type: 'blob', sha: image.sha }))
+    });
+    return res.status(200).json({ ok: true, item });
+  } catch (error) {
+    if (/GitHub 요청 실패 \(409\)/.test(error.message)) return res.status(409).json({ error: '다른 저장 작업과 겹쳤습니다. 다시 시도해 주세요.' });
+    return res.status(400).json({ error: error.message || '저장하지 못했습니다.' });
+  }
+};
