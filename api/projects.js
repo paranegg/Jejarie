@@ -2,10 +2,10 @@ const crypto = require('crypto');
 const { isAuthenticated } = require('../lib/auth');
 const { repositoryState, commitJson } = require('../lib/content');
 
-const categories = ['인조대리석 문지방', '누수복원', '목공', '생활집수리', '기타'];
+const defaultCategories = require('../categories.json');
 const clean = (value, max = 5000) => String(value || '').trim().slice(0, max);
 
-function normalize(body, previous = {}) {
+function normalize(body, previous = {}, categories = defaultCategories) {
   const images = Array.isArray(body.images) ? body.images.slice(0, 20) : [];
   const imagePaths = images.map(image => typeof image === 'string' ? image : '/' + image.path);
   const uploads = images.filter(image => image && typeof image === 'object');
@@ -39,8 +39,11 @@ module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
   if (!isAuthenticated(req)) return res.status(401).json({ error: '로그인이 필요합니다.' });
   try {
-    const state = await repositoryState('cases.json', []);
+    const [state, categoryState] = await Promise.all([
+      repositoryState('cases.json', []), repositoryState('categories.json', defaultCategories)
+    ]);
     const projects = Array.isArray(state.value) ? state.value : [];
+    const categories = Array.isArray(categoryState.value) ? categoryState.value : defaultCategories;
     if (req.method === 'GET') return res.status(200).json({ projects });
     if (req.method === 'DELETE') {
       const id = clean((req.body || {}).id, 100);
@@ -53,7 +56,7 @@ module.exports = async function handler(req, res) {
     const body = req.body || {};
     const index = req.method === 'PUT' ? projects.findIndex(item => item.id === body.id) : -1;
     if (req.method === 'PUT' && index < 0) return res.status(404).json({ error: '시공사례를 찾지 못했습니다.' });
-    const { item, uploads } = normalize(body, index >= 0 ? projects[index] : {});
+    const { item, uploads } = normalize(body, index >= 0 ? projects[index] : {}, categories);
     const next = [...projects];
     if (index >= 0) next[index] = item; else next.unshift(item);
     await commitJson({
