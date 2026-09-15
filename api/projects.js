@@ -25,6 +25,7 @@ function normalize(body, previous = {}, categories = defaultCategories) {
     review: clean(body.review, 3000),
     reviewVisible: Boolean(body.reviewVisible && clean(body.review, 3000)),
     featured: Boolean(body.featured),
+    hero: Boolean(body.hero),
     status: body.status === 'draft' ? 'draft' : 'published',
     images: imagePaths,
     coverImage: imagePaths.includes(body.coverImage) ? body.coverImage : imagePaths[Number(body.coverIndex) || 0] || imagePaths[0] || '',
@@ -32,6 +33,7 @@ function normalize(body, previous = {}, categories = defaultCategories) {
     updatedAt: new Date().toISOString()
   };
   if (!categories.includes(item.category) || !item.title || !item.region || !item.description || !item.images.length) throw new Error('필수 입력 내용을 다시 확인해 주세요.');
+  if (item.status === 'draft') item.hero = false;
   return { item, uploads };
 }
 
@@ -57,8 +59,9 @@ module.exports = async function handler(req, res) {
     const index = req.method === 'PUT' ? projects.findIndex(item => item.id === body.id) : -1;
     if (req.method === 'PUT' && index < 0) return res.status(404).json({ error: '시공사례를 찾지 못했습니다.' });
     const { item, uploads } = normalize(body, index >= 0 ? projects[index] : {}, categories);
-    const next = [...projects];
+    let next = [...projects];
     if (index >= 0) next[index] = item; else next.unshift(item);
+    if (item.hero) next = next.map(project => project.id === item.id ? project : { ...project, hero: false });
     await commitJson({
       path: 'cases.json', value: next, message: `${index >= 0 ? '시공사례 수정' : '시공사례 추가'}: ${item.title}`,
       extraTree: uploads.map(image => ({ path: image.path, mode: '100644', type: 'blob', sha: image.sha }))
