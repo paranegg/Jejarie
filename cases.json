@@ -1,5 +1,31 @@
 [
   {
+    "id": "e63c48d6-6ae1-4554-8c20-f5986b528285",
+    "siteId": "공항동 지하실 방수",
+    "category": "방수",
+    "title": "무기질 도막 방수",
+    "region": "서울",
+    "workDate": "2025-05-06",
+    "year": "2025",
+    "description": "습기와 곰팡이로 손상된 지하 공간을 철거한 뒤 무기질 도막방수를 시공하고 내부를 깔끔하게 복원했습니다.",
+    "details": "습기와 곰팡이로 크게 손상된 지하 공간의 기존 마감재를 철거하고 바탕면을 정리했습니다. 이후 벽체와 바닥에 무기질 도막방수를 시공하고, 내부 벽체와 천장 복원부터 도장·바닥 마감까지 진행해 다시 사용할 수 있는 공간으로 정리했습니다",
+    "review": "시공한 지 1년이 지났는데도 습도가 잘 유지되고 지금까지 깔끔하게 사용하고 있어요.",
+    "reviewVisible": true,
+    "featured": false,
+    "status": "published",
+    "images": [
+      "/uploads/2026-09-15/20772329-d0f4-4495-87a5-e5f24a12daa1.jpg",
+      "/uploads/2026-09-15/8ccbeb61-8064-433b-bbcb-100277c7fcc5.jpg",
+      "/uploads/2026-09-15/caf6cd86-3f32-4348-b742-5f377610d806.jpg",
+      "/uploads/2026-09-15/6213bd62-5a21-480f-82a9-f4c0b91a6fe3.jpg",
+      "/uploads/2026-09-15/ca2be236-8f51-4a75-b0dd-ae8a11d35218.jpg",
+      "/uploads/2026-09-15/da088bee-9ba3-4899-8aec-360cd1e3aed8.jpg"
+    ],
+    "coverImage": "/uploads/2026-09-15/da088bee-9ba3-4899-8aec-360cd1e3aed8.jpg",
+    "publishedAt": "2026-09-15T11:11:36.038Z",
+    "updatedAt": "2026-09-15T11:11:36.038Z"
+  },
+  {
     "id": "archive-rooftop-pergola",
     "siteId": "",
     "category": "목공",
