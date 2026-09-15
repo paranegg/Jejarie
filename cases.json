@@ -11,7 +11,7 @@
     "details": "습기와 곰팡이로 크게 손상된 지하 공간의 기존 마감재를 철거하고 바탕면을 정리했습니다. 이후 벽체와 바닥에 무기질 도막방수를 시공하고, 내부 벽체와 천장 복원부터 도장·바닥 마감까지 진행해 다시 사용할 수 있는 공간으로 정리했습니다",
     "review": "시공한 지 1년이 지났는데도 습도가 잘 유지되고 지금까지 깔끔하게 사용하고 있어요.",
     "reviewVisible": true,
-    "featured": false,
+    "featured": true,
     "status": "published",
     "images": [
       "/uploads/2026-09-15/20772329-d0f4-4495-87a5-e5f24a12daa1.jpg",
@@ -23,7 +23,7 @@
     ],
     "coverImage": "/uploads/2026-09-15/da088bee-9ba3-4899-8aec-360cd1e3aed8.jpg",
     "publishedAt": "2026-09-15T11:11:36.038Z",
-    "updatedAt": "2026-09-15T11:11:36.038Z"
+    "updatedAt": "2026-09-15T11:12:24.260Z"
   },
   {
     "id": "archive-rooftop-pergola",
