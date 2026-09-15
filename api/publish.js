@@ -2,7 +2,7 @@ const crypto = require('crypto');
 const { isAuthenticated } = require('../lib/auth');
 const { github, branch } = require('../lib/github');
 
-const categories = ['목공사', '누수 복원', '인조대리석 문지방', '기타 집수리'];
+const defaultCategories = require('../categories.json');
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -11,6 +11,11 @@ module.exports = async function handler(req, res) {
 
   try {
     const body = req.body || {};
+    let categories = defaultCategories;
+    try {
+      const categoryFile = await github(`/contents/categories.json?ref=${encodeURIComponent(branch)}`);
+      categories = JSON.parse(Buffer.from(categoryFile.content.replace(/\n/g, ''), 'base64').toString('utf8'));
+    } catch (_) {}
     const title = String(body.title || '').trim().slice(0, 100);
     const region = String(body.region || '').trim().slice(0, 60);
     const description = String(body.description || '').trim().slice(0, 2000);
