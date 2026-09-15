@@ -39,15 +39,13 @@
     "reviewVisible": false,
     "featured": true,
     "status": "published",
-    "coverImage": "/images/R1.jpg",
     "images": [
       "/images/R1.jpg",
-      "/images/R2.jpg",
-      "/images/R3.jpg",
-      "/images/R4.jpg",
-      "/images/R5.jpg"
+      "/images/R2.jpg"
     ],
-    "publishedAt": "2026-01-01T00:00:00.000Z"
+    "coverImage": "/images/R2.jpg",
+    "publishedAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-09-15T13:09:18.461Z"
   },
   {
     "id": "archive-leak-restoration",
