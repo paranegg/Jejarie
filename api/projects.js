@@ -4,6 +4,8 @@ const { repositoryState, commitJson } = require('../lib/content');
 
 const defaultCategories = require('../categories.json');
 const clean = (value, max = 5000) => String(value || '').trim().slice(0, max);
+const cleanList = (value, limit, max) => (Array.isArray(value) ? value : []).slice(0, limit).map(item => clean(item, max)).filter(Boolean);
+const cleanImage = (value, imagePaths) => imagePaths.includes(value) ? value : '';
 
 function normalize(body, previous = {}, categories = defaultCategories) {
   const images = Array.isArray(body.images) ? body.images.slice(0, 20) : [];
@@ -12,6 +14,17 @@ function normalize(body, previous = {}, categories = defaultCategories) {
   for (const image of uploads) {
     if (!/^[a-f0-9]{40}$/.test(image.sha || '') || !/^uploads\/\d{4}-\d{2}-\d{2}\/[a-f0-9-]+\.jpg$/.test(image.path || '')) throw new Error('사진 정보가 올바르지 않습니다.');
   }
+  const findings = cleanList(body.findings, 20, 300);
+  const processSteps = (Array.isArray(body.processSteps) ? body.processSteps : []).slice(0, 20).map(step => ({
+    title: clean(step && step.title, 120),
+    description: clean(step && step.description, 2000),
+    images: (Array.isArray(step && step.images) ? step.images : []).filter(path => imagePaths.includes(path)).slice(0, 8)
+  })).filter(step => step.title || step.description || step.images.length);
+  const followUp = {
+    period: clean(body.followUp && body.followUp.period, 80),
+    content: clean(body.followUp && body.followUp.content, 3000),
+    image: cleanImage(body.followUp && body.followUp.image, imagePaths)
+  };
   const item = {
     id: previous.id || crypto.randomUUID(),
     siteId: clean(body.siteId, 100),
@@ -22,6 +35,13 @@ function normalize(body, previous = {}, categories = defaultCategories) {
     year: clean(body.workDate, 10).slice(0, 4) || clean(body.year, 4),
     description: clean(body.description, 500),
     details: clean(body.details, 10000),
+    story: clean(body.story, 10000),
+    findings,
+    processSteps,
+    beforeImage: cleanImage(body.beforeImage, imagePaths),
+    afterImage: cleanImage(body.afterImage, imagePaths),
+    result: clean(body.result, 5000),
+    followUp,
     review: clean(body.review, 3000),
     reviewVisible: Boolean(body.reviewVisible && clean(body.review, 3000)),
     featured: Boolean(body.featured),
