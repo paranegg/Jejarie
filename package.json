@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-work-pages.js",
+    "test": "node scripts/build-work-pages.js && node scripts/test-work-pages.js"
+  }
+}
