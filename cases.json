@@ -179,34 +179,96 @@
   },
   {
     "id": "archive-leak-restoration",
+    "slug": "leak-damage-restoration",
+    "seoTitle": "",
+    "metaDescription": "",
     "siteId": "",
     "category": "누수복원",
-    "title": "누수 피해 천장·벽체 복원",
+    "title": "누수로 손상된 천장·벽체 철거 후 석고보드 복원",
     "region": "서울·경기",
     "workDate": "2025-12-01",
     "year": "2025",
-    "description": "보양, 철거와 보강, 면 정리와 마감까지 복원한 작업입니다.",
-    "details": "누수로 손상된 범위를 확인하고 주변을 보양한 뒤 손상된 천장과 벽체를 철거했습니다. 내부 상태를 점검하고 필요한 부분을 보강한 다음 면 정리와 마감 작업을 진행했습니다.",
+    "description": "누수로 손상된 천장과 벽체를 철거하고 내부 상태를 확인한 뒤 석고보드부터 마감까지 순서대로 복원한 현장입니다.",
+    "details": "",
+    "story": "누수가 발생한 이후 천장과 벽체의 마감재가 손상된 현장이었습니다.\n누수 피해를 입은 천장이나 벽체는 겉으로 보이는 얼룩만 가리는 것보다 손상 범위를 확인하고 내부 상태에 맞춰 복원하는 과정이 중요합니다.\n이 현장에서는 먼저 주변을 보양한 뒤 손상된 천장과 벽체를 철거했습니다. 내부 상태를 확인하고 충분히 건조한 후 바탕을 정리했으며, 석고보드를 다시 시공하고 이후 도배 작업 까지 진행해 기존 공간과 자연스럽게 이어질 수 있도록 마감했습니다.",
+    "findings": [
+      "누수로 인해 천장과 벽체 마감재가 손상된 범위를 확인했습니다.",
+      "손상된 부분을 철거한 뒤 내부의 습기 상태와 복원이 필요한 범위를 확인했습니다.",
+      "새 석고보드를 시공하기 전에 충분한 건조와 바탕 정리가 필요한 상태인지 확인했습니다.",
+      "복원 후 기존 천장·벽체와 자연스럽게 이어질 수 있도록 마감 범위를 함께 확인했습니다."
+    ],
+    "processSteps": [
+      {
+        "title": "주변 보양 및 손상 범위 확인",
+        "description": "",
+        "images": [
+          "/uploads/2026-09-29/2580ca4e-c996-4a6a-8d5e-94752a3c3423.jpg",
+          "/uploads/2026-09-29/1995a1cd-5392-4f67-bcf7-ee3306c39c2a.jpg",
+          "/uploads/2026-09-29/729ee9f6-4ba4-4f3e-af42-9ba535336d55.jpg"
+        ]
+      },
+      {
+        "title": "손상된 마감재 철거",
+        "description": "물에 젖거나 손상된 천장과 벽체 마감재를 철거해 내부 상태를 확인할 수 있도록 정리했습니다.",
+        "images": [
+          "/uploads/2026-09-29/062d420d-af8d-4b89-bb31-cbdc3de6e359.jpg",
+          "/uploads/2026-09-29/a32dafb4-f5bf-4697-9212-0589b3e8e9c8.jpg",
+          "/uploads/2026-09-29/cdd85daa-a073-4401-a482-78673fcdc38f.jpg",
+          "/uploads/2026-09-29/83fa0e1b-ce88-44ea-8eb2-a21bbbd1d737.jpg",
+          "/uploads/2026-09-29/5b4b9bca-f9bb-4841-a2c2-3c080f4981ca.jpg"
+        ]
+      },
+      {
+        "title": "곰팡이 제거 및 목재상 시공",
+        "description": "철거 후 곰팡이를 제거합니다. 새 마감재를 시공할 수 있도록 목상을 재시공 합니다.",
+        "images": [
+          "/uploads/2026-09-29/acca336e-daa2-46a1-ba78-72ef6a41c82f.jpg",
+          "/uploads/2026-09-29/c7cfc45b-63a2-4673-b25f-c04716206fa3.jpg",
+          "/uploads/2026-09-29/d5782cb6-bda3-4b29-a32a-e028854c3ce2.jpg"
+        ]
+      },
+      {
+        "title": "몰딩 및 석고보드 복원",
+        "description": "철거한 부분에 맞춰 석고보드를 다시 시공하고 떼어낸 몰딩도 시공합니다. 기존 천장과 벽체에 자연스럽게 연결되도록 면을 맞췄습니다.",
+        "images": [
+          "/uploads/2026-09-29/2c580527-e455-483e-a155-94ae3ad80f02.jpg",
+          "/uploads/2026-09-29/ea9b79c0-cac9-4f6e-a0c9-dde94a6be8bd.jpg",
+          "/uploads/2026-09-29/ddbaca74-afdc-408a-ba7c-52139b88a047.jpg"
+        ]
+      }
+    ],
+    "beforeImage": "/uploads/2026-09-29/5b4b9bca-f9bb-4841-a2c2-3c080f4981ca.jpg",
+    "afterImage": "/uploads/2026-09-29/ddbaca74-afdc-408a-ba7c-52139b88a047.jpg",
+    "result": "누수로 손상된 천장과 벽체를 필요한 범위까지 철거한 뒤 곰팡이 제거 건조와 바탕 정리, 석고보드 복원 까지 순서대로 진행했습니다.\n손상된 부분만 가리는 방식이 아니라 내부 상태를 확인한 뒤 마감재를 다시 구성해 기존 공간과 자연스럽게 이어지도록 복원했습니다.",
+    "followUp": {
+      "period": "",
+      "content": "",
+      "image": ""
+    },
     "review": "",
     "reviewVisible": false,
     "featured": true,
-    "status": "published",
-    "coverImage": "/images/L1.jpg",
-    "images": [
-      "/images/L1.jpg",
-      "/images/L2.jpg",
-      "/images/L3.jpg",
-      "/images/L4.jpg",
-      "/images/L5.jpg",
-      "/images/L6.jpg",
-      "/images/L7.jpg",
-      "/images/L8.jpg",
-      "/images/L9.jpg",
-      "/images/L10.jpg"
-    ],
-    "publishedAt": "2025-12-01T00:00:00.000Z",
     "hero": false,
-    "slug": "leak-damage-restoration"
+    "status": "published",
+    "images": [
+      "/uploads/2026-09-29/2580ca4e-c996-4a6a-8d5e-94752a3c3423.jpg",
+      "/uploads/2026-09-29/1995a1cd-5392-4f67-bcf7-ee3306c39c2a.jpg",
+      "/uploads/2026-09-29/729ee9f6-4ba4-4f3e-af42-9ba535336d55.jpg",
+      "/uploads/2026-09-29/062d420d-af8d-4b89-bb31-cbdc3de6e359.jpg",
+      "/uploads/2026-09-29/a32dafb4-f5bf-4697-9212-0589b3e8e9c8.jpg",
+      "/uploads/2026-09-29/cdd85daa-a073-4401-a482-78673fcdc38f.jpg",
+      "/uploads/2026-09-29/83fa0e1b-ce88-44ea-8eb2-a21bbbd1d737.jpg",
+      "/uploads/2026-09-29/5b4b9bca-f9bb-4841-a2c2-3c080f4981ca.jpg",
+      "/uploads/2026-09-29/acca336e-daa2-46a1-ba78-72ef6a41c82f.jpg",
+      "/uploads/2026-09-29/c7cfc45b-63a2-4673-b25f-c04716206fa3.jpg",
+      "/uploads/2026-09-29/d5782cb6-bda3-4b29-a32a-e028854c3ce2.jpg",
+      "/uploads/2026-09-29/2c580527-e455-483e-a155-94ae3ad80f02.jpg",
+      "/uploads/2026-09-29/ea9b79c0-cac9-4f6e-a0c9-dde94a6be8bd.jpg",
+      "/uploads/2026-09-29/ddbaca74-afdc-408a-ba7c-52139b88a047.jpg"
+    ],
+    "coverImage": "/uploads/2026-09-29/2580ca4e-c996-4a6a-8d5e-94752a3c3423.jpg",
+    "publishedAt": "2025-12-01T00:00:00.000Z",
+    "updatedAt": "2026-09-29T12:36:11.744Z"
   },
   {
     "id": "archive-marble-threshold",
