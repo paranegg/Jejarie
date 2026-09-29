@@ -22,6 +22,7 @@ for (const project of published) {
   assert(html.includes('<meta name="description"'), `Missing description: ${slug}`);
   assert(html.includes('<meta property="og:title"'), `Missing og:title: ${slug}`);
   assert(html.includes('<script type="application/ld+json">'), `Missing structured data: ${slug}`);
+  assert(html.includes('<script src="/public-image-protection.js"></script>'), `Missing image protection: ${slug}`);
 }
 
 const sitemap = fs.readFileSync(path.join(root, 'sitemap.xml'), 'utf8');
@@ -71,5 +72,15 @@ assert(work.includes('document.getElementById(\'grid\').innerHTML='), 'WORK enha
 assert(threshold.includes('document.getElementById(\'thresholdCases\').innerHTML='), 'Threshold enhancement must replace static cards');
 const buildSource = fs.readFileSync(path.join(root, 'scripts/build-work-pages.js'), 'utf8');
 assert(buildSource.includes("project.status === 'published'"), 'Build must explicitly exclude drafts');
+
+for (const file of ['index.html', 'work/index.html', 'work/detail/index.html', 'artificial-marble-threshold/index.html']) {
+  const html = fs.readFileSync(path.join(root, file), 'utf8');
+  assert(html.includes('<script src="/public-image-protection.js"></script>'), `Missing public image protection: ${file}`);
+}
+assert(!fs.readFileSync(path.join(root, 'admin/index.html'), 'utf8').includes('public-image-protection'), 'Image protection must not run in admin');
+const protection = fs.readFileSync(path.join(root, 'public-image-protection.js'), 'utf8');
+for (const behavior of ['contextmenu', 'dragstart', 'image.draggable = false', '-webkit-touch-callout:none', '-webkit-user-drag:none']) {
+  assert(protection.includes(behavior), `Missing image protection behavior: ${behavior}`);
+}
 
 console.log(`Validated ${published.length} WORK pages, ${featured.length} HOME cards, and ${thresholdCases.length} threshold cards`);

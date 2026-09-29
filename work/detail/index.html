@@ -27,4 +27,4 @@ fetch('/api/public-content',{cache:'no-store'}).then(r=>{if(!r.ok)throw 0;return
  const relatedSection=`<section class="related"><div class="shell"><div class="related-top"><div><div class="eyebrow">RELATED WORK</div><h2>같은 분야의<br>시공 기록.</h2></div><a class="more" href="/work/">더 많은 시공사례 보기 →</a></div>${related.length?`<div class="related-grid">${related.map(v=>`<a class="related-card" href="${projectUrl(v)}"><img src="${esc(v.coverImage||v.images?.[0]||'')}" alt="${esc(v.title)} 완료 모습" loading="lazy"><small>${esc(v.category)} · ${esc(v.region)}</small><h3>${esc(v.title)}</h3></a>`).join('')}</div>`:'<p class="related-empty">같은 분야의 다른 시공사례를 준비하고 있습니다.</p>'}</div></section>`;
  document.getElementById('content').innerHTML=hero+storySection+findingSection+processSection+compareSection+gallerySection+resultSection+followSection+reviewSection+contact+relatedSection;
 }).catch(()=>document.getElementById('content').innerHTML='<div class="shell empty"><h1>시공사례를 찾지 못했습니다.</h1><p><a href="/work/">WORK 목록으로 돌아가기</a></p></div>');
-</script></body></html>
+</script><script src="/public-image-protection.js"></script></body></html>
