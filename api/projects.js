@@ -6,8 +6,10 @@ const defaultCategories = require('../categories.json');
 const clean = (value, max = 5000) => String(value || '').trim().slice(0, max);
 const cleanList = (value, limit, max) => (Array.isArray(value) ? value : []).slice(0, limit).map(item => clean(item, max)).filter(Boolean);
 const cleanImage = (value, imagePaths) => imagePaths.includes(value) ? value : '';
+const cleanSlug = value => clean(value, 80).toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '');
 
 function normalize(body, previous = {}, categories = defaultCategories) {
+  const id = previous.id || crypto.randomUUID();
   const images = Array.isArray(body.images) ? body.images.slice(0, 20) : [];
   const imagePaths = images.map(image => typeof image === 'string' ? image : '/' + image.path);
   const uploads = images.filter(image => image && typeof image === 'object');
@@ -26,7 +28,10 @@ function normalize(body, previous = {}, categories = defaultCategories) {
     image: cleanImage(body.followUp && body.followUp.image, imagePaths)
   };
   const item = {
-    id: previous.id || crypto.randomUUID(),
+    id,
+    slug: cleanSlug(body.slug) || previous.slug || `project-${id.slice(0, 8)}`,
+    seoTitle: clean(body.seoTitle, 120),
+    metaDescription: clean(body.metaDescription, 180),
     siteId: clean(body.siteId, 100),
     category: clean(body.category, 40),
     title: clean(body.title, 100),
@@ -79,6 +84,7 @@ module.exports = async function handler(req, res) {
     const index = req.method === 'PUT' ? projects.findIndex(item => item.id === body.id) : -1;
     if (req.method === 'PUT' && index < 0) return res.status(404).json({ error: '시공사례를 찾지 못했습니다.' });
     const { item, uploads } = normalize(body, index >= 0 ? projects[index] : {}, categories);
+    if (projects.some(project => project.id !== item.id && project.slug === item.slug)) return res.status(409).json({ error: '이미 사용 중인 페이지 주소입니다.' });
     let next = [...projects];
     if (index >= 0) next[index] = item; else next.unshift(item);
     if (item.hero) next = next.map(project => project.id === item.id ? project : { ...project, hero: false });

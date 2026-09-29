@@ -72,7 +72,10 @@
     ],
     "coverImage": "/uploads/2026-09-29/45292d0b-48d2-4dd7-806c-280ffbc348ef.jpg",
     "publishedAt": "2026-09-29T04:39:24.586Z",
-    "updatedAt": "2026-09-29T04:39:24.586Z"
+    "updatedAt": "2026-09-29T04:39:24.586Z",
+    "slug": "bathroom-threshold-water-damage",
+    "seoTitle": "욕실 물넘침으로 손상된 마루 | 인조대리석 문지방 시공 | 제자리에",
+    "metaDescription": "기존의 좁은 도어씰을 넘어온 물로 욕실 앞 마루까지 손상된 현장입니다. 손상 원인을 함께 확인하고 폭과 높이를 확보한 인조대리석 문지방으로 교체했습니다."
   },
   {
     "id": "e63c48d6-6ae1-4554-8c20-f5986b528285",
@@ -99,7 +102,8 @@
     "coverImage": "/uploads/2026-09-15/da088bee-9ba3-4899-8aec-360cd1e3aed8.jpg",
     "publishedAt": "2026-09-15T11:11:36.038Z",
     "updatedAt": "2026-09-15T11:12:24.260Z",
-    "hero": true
+    "hero": true,
+    "slug": "basement-mineral-waterproofing"
   },
   {
     "id": "archive-rooftop-pergola",
@@ -122,7 +126,8 @@
     "coverImage": "/images/R2.jpg",
     "publishedAt": "2026-01-01T00:00:00.000Z",
     "updatedAt": "2026-09-15T13:09:18.461Z",
-    "hero": false
+    "hero": false,
+    "slug": "rooftop-pergola-construction"
   },
   {
     "id": "archive-leak-restoration",
@@ -152,7 +157,8 @@
       "/images/L10.jpg"
     ],
     "publishedAt": "2025-12-01T00:00:00.000Z",
-    "hero": false
+    "hero": false,
+    "slug": "leak-damage-restoration"
   },
   {
     "id": "archive-marble-threshold",
@@ -178,7 +184,8 @@
       "/images/M6.jpg"
     ],
     "publishedAt": "2025-11-01T00:00:00.000Z",
-    "hero": false
+    "hero": false,
+    "slug": "artificial-marble-threshold-replacement"
   },
   {
     "id": "archive-interior-finish",
@@ -202,6 +209,7 @@
       "/images/R9.jpg"
     ],
     "publishedAt": "2025-10-01T00:00:00.000Z",
-    "hero": false
+    "hero": false,
+    "slug": "interior-wall-ceiling-finish"
   }
 ]
