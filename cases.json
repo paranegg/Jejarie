@@ -232,7 +232,7 @@
     "review": "시공한 지 1년이 지났는데도 습도가 잘 유지되고 지금까지 깔끔하게 사용하고 있어요.",
     "reviewVisible": true,
     "featured": true,
-    "hero": true,
+    "hero": false,
     "status": "published",
     "images": [
       "/uploads/2026-09-15/20772329-d0f4-4495-87a5-e5f24a12daa1.jpg",
@@ -244,7 +244,7 @@
     ],
     "coverImage": "/uploads/2026-09-15/da088bee-9ba3-4899-8aec-360cd1e3aed8.jpg",
     "publishedAt": "2026-09-15T11:11:36.038Z",
-    "updatedAt": "2026-09-29T13:11:50.424Z"
+    "updatedAt": "2026-10-01T06:05:45.258Z"
   },
   {
     "id": "archive-rooftop-pergola",
