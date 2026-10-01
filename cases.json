@@ -365,6 +365,9 @@
   },
   {
     "id": "archive-marble-threshold",
+    "slug": "artificial-marble-threshold-replacement",
+    "seoTitle": "",
+    "metaDescription": "",
     "siteId": "",
     "category": "인조대리석 문지방",
     "title": "인조대리석 문지방 교체",
@@ -373,11 +376,22 @@
     "year": "2025",
     "description": "손상된 기존 문지방을 철거하고 높이와 폭에 맞춰 깔끔하게 교체했습니다.",
     "details": "기존 문지방을 안전하게 철거하고 바탕면을 정리했습니다. 현장 폭과 높이에 맞춰 인조대리석을 가공하고 문과 바닥의 사용에 불편함이 없도록 마감했습니다.",
+    "story": "",
+    "findings": [],
+    "processSteps": [],
+    "beforeImage": "",
+    "afterImage": "",
+    "result": "",
+    "followUp": {
+      "period": "",
+      "content": "",
+      "image": ""
+    },
     "review": "",
     "reviewVisible": false,
     "featured": true,
+    "hero": true,
     "status": "published",
-    "coverImage": "/images/M1.jpg",
     "images": [
       "/images/M1.jpg",
       "/images/M2.jpg",
@@ -386,9 +400,9 @@
       "/images/M5.jpg",
       "/images/M6.jpg"
     ],
+    "coverImage": "/images/M2.jpg",
     "publishedAt": "2025-11-01T00:00:00.000Z",
-    "hero": false,
-    "slug": "artificial-marble-threshold-replacement"
+    "updatedAt": "2026-10-01T06:06:13.923Z"
   },
   {
     "id": "archive-interior-finish",
